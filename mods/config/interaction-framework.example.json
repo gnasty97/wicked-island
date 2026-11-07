@@ -1,0 +1,23 @@
+{
+  "poseSwitch": {
+    "enabled": true,
+    "maxShortcuts": 10,
+    "showOverlay": true
+  },
+  "universalEntityInteraction": {
+    "enabled": true,
+    "allowKinds": [
+      "Unknown",
+      "Player",
+      "Npc",
+      "Creature",
+      "Boss",
+      "Summon",
+      "Ambient"
+    ],
+    "globalBlockTags": [
+      "NoInteraction",
+      "DebugOnly"
+    ]
+  }
+}

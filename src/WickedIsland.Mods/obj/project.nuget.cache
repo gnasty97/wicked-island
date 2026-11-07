@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "uzSpiULrXSw=",
+  "success": true,
+  "projectFilePath": "/home/runner/work/wicked-island/wicked-island/src/WickedIsland.Mods/WickedIsland.Mods.csproj",
+  "expectedPackageFiles": [
+    "/tmp/codeql-scratch-5cdb3841e5777f2d/dbs/csharp/working/packages/microsoft.netframework.referenceassemblies/1.0.3/microsoft.netframework.referenceassemblies.1.0.3.nupkg.sha512",
+    "/tmp/codeql-scratch-5cdb3841e5777f2d/dbs/csharp/working/packages/microsoft.netframework.referenceassemblies.net472/1.0.3/microsoft.netframework.referenceassemblies.net472.1.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
