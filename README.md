@@ -2,57 +2,69 @@
 
 mods for the game
 
-## Included mod framework
+## Recommended path (Unreal/UE4SS)
 
-This repo includes a BepInEx plugin scaffold plus two systems:
+This repository now includes:
 
-- in-scene **number-key pose switching** with on-screen list
-- **universal entity interaction policy** with allow-by-default rules and global tag blocks
+- UE4SS install script
+- UE4SS uninstall/rollback script
+- Ready-to-drop UE4SS mod template folder (`WickedIslandMods`)
 
-### Files
+### Key files
 
-- `/home/runner/work/wicked-island/wicked-island/src/WickedIsland.Mods/WickedIsland.Mods.csproj`
-- `/home/runner/work/wicked-island/wicked-island/src/WickedIsland.Mods/WickedIslandModsPlugin.cs`
-- `/home/runner/work/wicked-island/wicked-island/src/WickedIsland.Mods/Interaction/PoseSwitchSystem.cs`
-- `/home/runner/work/wicked-island/wicked-island/src/WickedIsland.Mods/Interaction/UniversalEntityInteractionPolicy.cs`
-- `/home/runner/work/wicked-island/wicked-island/mods/config/interaction-framework.example.json`
+- `/home/runner/work/wicked-island/wicked-island/scripts/install-ue4ss-mod.ps1`
+- `/home/runner/work/wicked-island/wicked-island/scripts/uninstall-ue4ss-mod.ps1`
+- `/home/runner/work/wicked-island/wicked-island/mods/ue4ss/WickedIslandMods/enabled.txt`
+- `/home/runner/work/wicked-island/wicked-island/mods/ue4ss/WickedIslandMods/scripts/main.lua`
 
-## Build (BepInEx target)
+## Install
 
-Using your path (`C:\Program Files (x86)\Steam\steamapps\common\Wicked Island`), run:
-
-```powershell
-dotnet build /home/runner/work/wicked-island/wicked-island/src/WickedIsland.Mods/WickedIsland.Mods.csproj -c Release -p:BepInExDir="C:\Program Files (x86)\Steam\steamapps\common\Wicked Island\BepInEx" -p:UnityManagedDir="C:\Program Files (x86)\Steam\steamapps\common\Wicked Island\Wicked Island_Data\Managed"
-```
-
-Or use the helper script (default path already set):
+1. Download a UE4SS release zip and place it at:
+   - `C:\Users\<you>\Downloads\UE4SS.zip`
+2. Run:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File /home/runner/work/wicked-island/wicked-island/scripts/build-and-install.ps1
+powershell -ExecutionPolicy Bypass -File /home/runner/work/wicked-island/wicked-island/scripts/install-ue4ss-mod.ps1
 ```
 
-Output DLL:
+### Optional parameters
 
-- `/home/runner/work/wicked-island/wicked-island/src/WickedIsland.Mods/bin/Release/net472/WickedIsland.Mods.dll`
+```powershell
+powershell -ExecutionPolicy Bypass -File /home/runner/work/wicked-island/wicked-island/scripts/install-ue4ss-mod.ps1 `
+  -GamePath "C:\Program Files (x86)\Steam\steamapps\common\Wicked Island" `
+  -UE4SSZipPath "C:\Users\<you>\Downloads\UE4SS_vX.Y.Z.zip" `
+  -ModSourcePath "C:\path\to\custom\WickedIslandMods"
+```
 
-## Install to test (Steam)
+The installer:
 
-1. Install BepInEx into Wicked Island.
-2. Launch the game once, then close it (this creates BepInEx folders).
-3. Copy plugin DLL to:
-   - `C:\Program Files (x86)\Steam\steamapps\common\Wicked Island\BepInEx\plugins\WickedIsland.Mods.dll`
-4. (Optional) Copy config example:
-   - from `/home/runner/work/wicked-island/wicked-island/mods/config/interaction-framework.example.json`
-   - to `C:\Program Files (x86)\Steam\steamapps\common\Wicked Island\BepInEx\config\interaction-framework.json`
-5. Start the game and check:
-   - BepInEx log contains `Wicked Island Mods 0.1.0 loaded.`
-   - Number keys `1..0` switch poses in the demo scene context.
-   - `F7` writes sample universal entity eligibility result in logs.
-   - Overlay appears in top-left when enabled.
+- backs up existing loader/mod files into `_mod_backup\<timestamp>`
+- installs UE4SS files into the game directory
+- installs `WickedIslandMods` into `...\Wicked Island\Mods\WickedIslandMods`
+- writes install state to `...\Wicked Island\_wickedisland_mod_state.json`
 
-## Runtime notes
+## Uninstall / rollback
 
-- Current plugin entrypoint uses a demo context (`DemoSceneInteractionContext`) so you can verify install and key handling immediately.
-- Replace demo context with real game hooks in `WickedIslandModsPlugin`:
-  - implement `ISceneInteractionContext` against Wicked Island scene state
-  - call `UniversalEntityInteractionPolicy.IsEligible(...)` inside your actual interaction gating path
+```powershell
+powershell -ExecutionPolicy Bypass -File /home/runner/work/wicked-island/wicked-island/scripts/uninstall-ue4ss-mod.ps1
+```
+
+This removes `Mods\WickedIslandMods` and restores any backed-up files.
+
+## Mod template notes
+
+`scripts/main.lua` currently provides scaffold logic:
+
+- Number-based pose switching function (`switchPoseByNumber`)
+- Overlay text generation function (`renderOverlay`)
+- Universal entity eligibility policy function (`isEntityEligible`)
+
+Replace the marked stubs with game-specific hooks and UI calls.
+
+## Legacy C# scaffold
+
+The repository still contains an earlier C# BepInEx scaffold under:
+
+- `/home/runner/work/wicked-island/wicked-island/src/WickedIsland.Mods`
+
+Use the UE4SS path above for this game runtime.
