@@ -1,0 +1,61 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/runner/work/wicked-island/wicked-island/src/WickedIsland.Mods/WickedIsland.Mods.csproj": {}
+  },
+  "projects": {
+    "/home/runner/work/wicked-island/wicked-island/src/WickedIsland.Mods/WickedIsland.Mods.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/runner/work/wicked-island/wicked-island/src/WickedIsland.Mods/WickedIsland.Mods.csproj",
+        "projectName": "WickedIsland.Mods",
+        "projectPath": "/home/runner/work/wicked-island/wicked-island/src/WickedIsland.Mods/WickedIsland.Mods.csproj",
+        "packagesPath": "/tmp/codeql-scratch-5cdb3841e5777f2d/dbs/csharp/working/packages",
+        "outputPath": "/home/runner/work/wicked-island/wicked-island/src/WickedIsland.Mods/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/runner/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "framework": "net472",
+            "targetAlias": "net472",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.400"
+      },
+      "frameworks": {
+        "net472": {
+          "framework": "net472",
+          "targetAlias": "net472",
+          "dependencies": {
+            "Microsoft.NETFramework.ReferenceAssemblies": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.403/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
